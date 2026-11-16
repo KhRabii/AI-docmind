@@ -3,3 +3,4 @@
 .azure/
 __pycache__/
 *.pyc
+infra/modules/*.json
