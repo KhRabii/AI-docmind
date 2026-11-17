@@ -59,16 +59,17 @@ resource chat 'Microsoft.CognitiveServices/accounts/deployments@2025-06-01' = {
         }
         versionUpgradeOption: 'OnceNewDefaultVersionAvailable'
     }
+    dependsOn: [ project ]
 }
 
 resource embedding 'Microsoft.CognitiveServices/accounts/deployments@2025-06-01' = {
-  parent: account
-  name: embeddingDeploymentName
-  sku: { name: 'GlobalStandard', capacity: 30 }
-  properties: {
-    model: { format: 'OpenAI', name: 'text-embedding-3-small', version: '1' }
-  }
-  dependsOn: [ chat ]
+    parent: account
+    name: embeddingDeploymentName
+    sku: { name: 'GlobalStandard', capacity: 30 }
+    properties: {
+        model: { format: 'OpenAI', name: 'text-embedding-3-small', version: '1' }
+    }
+    dependsOn: [ chat ]
 }
 
 resource search 'Microsoft.Search/searchServices@2023-11-01' existing = {

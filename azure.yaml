@@ -1,0 +1,10 @@
+name: documind
+infra:
+  provider: bicep
+  path: infra
+  module: main
+hooks:
+  postprovision:
+    posix:
+      shell: sh
+      run: azd env get-values > .env
